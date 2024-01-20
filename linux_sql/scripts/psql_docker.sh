@@ -3,9 +3,6 @@ cmd=$1
 db_username=$2
 db_password=$3
 
-#sudo systemctl status docker || systemctl start docker
-#status=$?
-
 docker container inspect jrvs-psql > /dev/null 2>&1
 container_status=$?
 
@@ -24,17 +21,12 @@ case $cmd in
 
   # Create container
 	docker volume create pgdata
-  # set password for default user `postgres`
-  export PGPASSWORD='password'
 
   # create a container using psql image with name=jrvs-psql
   # analogy: install psql CD to a computer with name=jrvs-psql
-  docker run --name jrvs-psql -e POSTGRES_PASSWORD=$PGPASSWORD -d -v pgdata:/var/lib/postgresql/data -p 5432:5432 postgres:9.6-alpine
-
+  docker run --name jrvs-psql -e POSTGRES_PASSWORD=$db_password -e POSTGRES_USER=$db_username -d -v pg_vol:/var/lib/postgresql/data -p 5432 postgres:9.6-alpine
   # Start the container
 	docker container start jrvs-psql
-  psql -h localhost -U postgres -d postgres -W
-
   # Make sure you understand what's `$?`
 	exit $?
 	;;
@@ -46,9 +38,6 @@ case $cmd in
   fi
   # Start or stop the container
 	docker container $cmd jrvs-psql
-  if [ "$cmd" == "start" ]; then
-      psql -h localhost -U postgres -d postgres -W
-    fi
   exit $?
 	;;
 
