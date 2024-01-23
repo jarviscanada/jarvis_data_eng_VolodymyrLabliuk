@@ -24,7 +24,7 @@ case $cmd in
 
   # create a container using psql image with name=jrvs-psql
   # analogy: install psql CD to a computer with name=jrvs-psql
-  docker run --name jrvs-psql -e POSTGRES_PASSWORD=$db_password -e POSTGRES_USER=$db_username -d -v pg_vol:/var/lib/postgresql/data -p 5432 postgres:9.6-alpine
+  docker run --name jrvs-psql -e POSTGRES_PASSWORD=$db_password -e POSTGRES_USER=$db_username -d -v pg_vol:/var/lib/postgresql/data -p 5432:5432 postgres:9.6-alpine
   # Start the container
 	docker container start jrvs-psql
   # Make sure you understand what's `$?`
@@ -38,6 +38,7 @@ case $cmd in
   fi
   # Start or stop the container
 	docker container $cmd jrvs-psql
+	psql -h localhost -U postgres -d postgres -W
   exit $?
 	;;
 
