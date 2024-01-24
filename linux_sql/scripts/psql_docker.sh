@@ -21,11 +21,14 @@ case $cmd in
 
   # Create container
 	docker volume create pgdata
+	#export PGPASSWORD=$db_password
+	export PGPASSWORD='password'
+	#export PGUSERNAME=$db_username
 
   # create a container using psql image with name=jrvs-psql
   # analogy: install psql CD to a computer with name=jrvs-psql
-  docker run --name jrvs-psql -e POSTGRES_PASSWORD=$db_password -e POSTGRES_USER=$db_username -d -v pg_vol:/var/lib/postgresql/data -p 5432:5432 postgres:9.6-alpine
-  # Start the container
+  docker run --name jrvs-psql -e POSTGRES_PASSWORD=$PGPASSWORD -d -v pg_vol:/var/lib/postgresql/data -p 5432:5432 postgres:9.6-alpine
+    # Start the container
 	docker container start jrvs-psql
   # Make sure you understand what's `$?`
 	exit $?
@@ -36,6 +39,7 @@ case $cmd in
   if [ $container_status -ne 0 ]; then
    exit 1;
   fi
+  echo $PGUSERNAME
   # Start or stop the container
 	docker container $cmd jrvs-psql
 	psql -h localhost -U postgres -d postgres -W
