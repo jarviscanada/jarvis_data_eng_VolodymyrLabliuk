@@ -30,7 +30,7 @@ total_mem=$(echo "$vmstat_mb" | tail -1 | awk '{print $4}')
 # PSQL command: Inserts server usage data into host_usage table
 # Note: be careful with double and single quotes
 insert_stmt="INSERT INTO host_info (hostname, cpu_number, cpu_architecture, cpu_model, cpu_mhz, l2_cache, \"timestamp\", total_mem)
-VALUES ('noe3', $cpu_number, '$cpu_architecture', '$cpu_model', $cpu_mhz, $l2_cache, '$timestamp', $total_mem);"
+VALUES ('$hostname', $cpu_number, '$cpu_architecture', '$cpu_model', $cpu_mhz, $l2_cache, '$timestamp', $total_mem);"
 #set up env var for pql cmd
 export PGPASSWORD=$psql_password
 #Insert date into a database
