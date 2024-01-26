@@ -20,10 +20,9 @@ case $cmd in
 	fi
 
   # Create container
-	docker volume create pgdata
-	#export PGPASSWORD=$db_password
-	export PGPASSWORD='password'
-	#export PGUSERNAME=$db_username
+	docker volume create pgdat
+	export PGPASSWORD=${db_password}
+	export $PGUSERNAME = ${db_username}
 
   # create a container using psql image with name=jrvs-psql
   # analogy: install psql CD to a computer with name=jrvs-psql
@@ -39,7 +38,7 @@ case $cmd in
   if [ $container_status -ne 0 ]; then
    exit 1;
   fi
-  echo $PGUSERNAME
+
   # Start or stop the container
 	docker container $cmd jrvs-psql
 	psql -h localhost -U postgres -d postgres -W
