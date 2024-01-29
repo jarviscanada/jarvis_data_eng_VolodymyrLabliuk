@@ -23,16 +23,20 @@ skills:
     - C
     - C++
     - Java Spring
-    - Cloud computing
+    - Cloud platforms
     - System design
   # At least 5 skills
   familiar:
     - C#
+    - MySQL
+    - Android development
+    - AWS
+    - GPT API
 
 # List of Jarvis projects
 jarvis_projects:
   - name: "Cluster Monitor"
-    git_url: "/linux_sql"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: This project leverages Bash scripting and Docker to create and manage a system monitoring solution. The goal is to collect and store system information and resource usage in a PostgreSQL database. The users of this project are system administrators or anyone interested in monitoring and analyzing hardware specifications and usage over time. Key technologies used include Bash scripting for data collection, Docker for containerization, and PostgreSQL for data storage.
@@ -74,3 +78,5 @@ education:
     duration: "2007-2012"
     degree: "Bachelor of Engineering"
     department: "Marine Mechanical Engineering"
+    awards_achievements:
+      - "Mentoring"
