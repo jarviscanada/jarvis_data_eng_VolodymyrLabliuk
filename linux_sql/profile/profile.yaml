@@ -6,10 +6,11 @@ github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_VolodymyrL
 # Introduce yourself, your academic and professional background.
 # What excites you about the software industry and your passion. At least 80 words
 summary: I have been programming for the last 5 years and during this time I managed to get a programmer qualification at Seneca College and experience in developing dynamic applications using modern approaches and programming languages, and still continue to develop my skills in the application of the latest technologies. I am highly motivated, committed and creative. I am passionate about Computer Science and Information Technology, about building software. I am a keen learner. I have been on Presidents Honour List at Seneca college awarded for outstanding achievement in studies for three semesters and have average GPA 3.9 upon graduation.
+
 # Group your skills by level.
 # Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
 skills:
-  # At least 5 skill
+  # At least 5 skills
   proficient:
     - Java
     - JavaScript/TypeScript
@@ -36,13 +37,15 @@ skills:
 # List of Jarvis projects
 jarvis_projects:
   - name: "Cluster Monitor"
-    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/linux_sql"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: This project leverages Bash scripting and Docker to create and manage a system monitoring solution. The goal is to collect and store system information and resource usage in a PostgreSQL database. The users of this project are system administrators or anyone interested in monitoring and analyzing hardware specifications and usage over time. Key technologies used include Bash scripting for data collection, Docker for containerization, and PostgreSQL for data storage.
+
+# List of personal or academic projects
 # Feel free to add more projects
 highlighted_projects:
-    #project name
+  #project name
   - name: "NHL stats tracker"
     #URL is optional
     git_url: "https://github.com/vlabliuk/nhl-stats-app"
@@ -64,7 +67,7 @@ professional_experience:
     description: "Part of small team working with TypeScript, React, NodeJS, Postgres, Shopify and Google Cloud"
 
 #List of edcuation
-education: 
+education:
   - school_name: "Seneca College"
     duration: "2021-2022"
     degree: "Ontario College Diploma"
@@ -80,3 +83,15 @@ education:
     department: "Marine Mechanical Engineering"
     awards_achievements:
       - "Mentoring"
+
+#Optional section
+others:
+  #category
+  - title: "Certificates"
+    #list of items
+    bullets:
+      - "Java Spring Course (Udemy)"
+  - title: "Activities/Hobbies"
+    bullets:
+      - "Odesa Half Marathon 2016"
+      - "Odesa Half Marathon 2018"
