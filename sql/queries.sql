@@ -204,3 +204,43 @@ FROM
     cd.members m
 ORDER BY member;
 
+-- Group by count
+
+SELECT
+    recommendedby,
+    COUNT(memid) AS count
+FROM
+    members
+WHERE
+    recommendedby IS NOT NULL
+GROUP BY
+    recommendedby
+ORDER BY
+    recommendedby;
+
+-- Sum of slots
+
+SELECT
+    facid,
+    SUM(slots) AS "Total Slots"
+FROM
+    bookings
+GROUP BY
+    facid
+ORDER BY
+    facid;
+
+-- Sum with date condition
+
+SELECT
+    facid,
+    SUM(slots) AS "Total Slots"
+FROM
+    bookings
+WHERE
+    DATE(starttime) BETWEEN '2012-09-01'
+  AND '2012-09-30'
+GROUP BY
+    facid
+ORDER BY
+    "Total Slots";
