@@ -204,7 +204,7 @@ FROM
     cd.members m
 ORDER BY member;
 
--- Group by count
+-- Count the number of recommendations each member makes.
 
 SELECT
     recommendedby,
@@ -218,7 +218,7 @@ GROUP BY
 ORDER BY
     recommendedby;
 
--- Sum of slots
+-- List the total slots booked per facility
 
 SELECT
     facid,
@@ -230,7 +230,7 @@ GROUP BY
 ORDER BY
     facid;
 
--- Sum with date condition
+-- List the total slots booked per facility in a given month
 
 SELECT
     facid,
@@ -244,3 +244,134 @@ GROUP BY
     facid
 ORDER BY
     "Total Slots";
+
+-- List the total slots booked per facility per month
+
+SELECT
+    facid,
+    EXTRACT(
+            month
+            FROM
+            starttime
+    ) AS month,
+  SUM(slots) AS "Total Slots"
+FROM
+    bookings
+WHERE
+    EXTRACT (
+    year
+    FROM
+    starttime
+    ) = 2012
+GROUP BY
+    facid,
+    month
+ORDER BY
+    facid,
+    month;
+
+-- Find the count of members who have made at least one booking
+
+SELECT
+    COUNT(DISTINCT memid)
+FROM
+    bookings;
+
+-- List each member's first booking after September 1st 2012
+
+SELECT
+    m.surname,
+    m.firstname,
+    m.memid,
+    MIN(b.starttime)
+FROM
+    members m
+        JOIN bookings b ON m.memid = b.memid
+WHERE
+    DATE(b.starttime) >= '2012-09-01'
+GROUP BY
+    m.surname,
+    m.firstname,
+    m.memid
+ORDER BY
+    m.memid;
+
+-- Produce a list of member names, with each row containing the total member count
+
+SELECT
+    total_count.total_rows,
+    m.firstname,
+    m.surname
+FROM
+    members m CROSS
+                  JOIN (
+        SELECT
+            COUNT(*) AS total_rows
+        FROM
+            members m
+    ) AS total_count;
+
+-- Produce a numbered list of members
+
+SELECT
+    ROW_NUMBER() over (
+    ORDER BY
+      joindate
+  ),
+        m.firstname,
+    m.surname
+FROM
+    members m;
+
+-- Output the facility id that has the highest number of slots booked, again
+
+SELECT
+    facid,
+    total
+FROM
+    (
+        SELECT
+            facid,
+            sum(slots) total,
+            rank() over (
+        ORDER BY
+          sum(slots) DESC
+      ) rank
+        FROM
+            bookings
+        GROUP BY
+            facid
+    ) AS ranked
+WHERE
+    rank = 1;
+
+-- Format the names of members
+
+SELECT
+    surname || ', ' || firstname AS name
+FROM
+    members;
+
+-- Find telephone numbers with parentheses
+
+SELECT
+    memid,
+    telephone
+FROM
+    members
+WHERE
+    telephone LIKE '(%)%';
+
+-- Count the number of members whose surname starts with each letter of the alphabet
+
+SELECT
+    SUBSTRING(surname, 1, 1) AS letter,
+    COUNT(surname)
+FROM
+    cd.members
+GROUP BY
+    SUBSTRING(surname, 1, 1)
+ORDER BY
+    letter;
+
+
