@@ -1,5 +1,8 @@
 # Introduction
 
+In this project, I spearheaded the setup of a new PostgreSQL database, meticulously executing a variety of Data Definition Language (DDL) and Data Manipulation Language (DML) queries. From meticulously crafting tables and defining their structures to executing intricate data modifications, I ensured the database's robustness and efficiency. 
+Through strategic planning and precise execution, I not only built a solid foundation for data management but also demonstrated my expertise in handling complex database operations.
+
 # SQL Quries
 
 ###### Table Setup (DDL)
@@ -37,19 +40,6 @@ CREATE TABLE Facilities (
   CONSTRAINT facilities_pk PRIMARY KEY (facid)
 );
 
-```
-
-###### Question 1: Show all members
-
-```sql
-SELECT *
-FROM cd.members
-```
-
-###### Questions 2: Lorem ipsum...
-
-```sql
-SELECT blah blah 
 ```
 
 ###### Question 1: Insert some data into a table
