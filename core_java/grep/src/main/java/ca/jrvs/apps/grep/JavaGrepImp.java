@@ -4,9 +4,10 @@ import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
+import java.io.*;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class JavaGrepImp implements JavaGrep{
 
@@ -18,27 +19,57 @@ public class JavaGrepImp implements JavaGrep{
 
     @Override
     public void process() throws IOException {
+        List<File> files = listFiles(rootPath);
+        for (File file : files){
+            if(!file.isDirectory()){
+                writeToFile(readLines(file));
+            }else{
+                listFiles(file.getName());
+            }
+        }
 
     }
 
     @Override
     public List<File> listFiles(String rootDir) {
-        return null;
+        return Stream.of(Objects.requireNonNull(new File(rootDir).listFiles()))
+                .filter(file -> !file.isDirectory())
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<String> readLines(File inputFile) {
-        return null;
+        List<String> lines;
+        try (Scanner grepReader = new Scanner(inputFile)) {
+            lines = new ArrayList<>();
+            while (grepReader.hasNextLine()) {
+                lines.add(grepReader.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            logger.error(e.getMessage());
+            throw new RuntimeException(e);
+        }
+        return lines;
     }
 
     @Override
     public boolean containsPattern(String line) {
-        return false;
+        return line.matches(regex);
     }
 
     @Override
     public void writeToFile(List<String> lines) throws IOException {
-
+        File out = new File(rootPath + '/' + outFile);
+        //out.createNewFile(); // if file already exists will do nothing
+        if(out.createNewFile()){
+            try(FileWriter grepWriter = new FileWriter(outFile)) {
+                for (String line : lines) {
+                    grepWriter.write(line);
+                }
+            }
+        }else{
+            logger.error("File doesn't exist");
+        }
     }
 
     @Override
@@ -80,6 +111,7 @@ public class JavaGrepImp implements JavaGrep{
 
         JavaGrepImp javaGrepImp = new JavaGrepImp();
         javaGrepImp.setRegex(args[0]);
+        ///home/centos/dev/jarvis_data_eng_vlabliuk/core_java/grep
         javaGrepImp.setRootPath(args[1]);
         javaGrepImp.setOutFile(args[2]);
 
