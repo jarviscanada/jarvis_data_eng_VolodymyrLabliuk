@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class JavaGrepImp implements JavaGrep{
@@ -19,52 +21,50 @@ public class JavaGrepImp implements JavaGrep{
 
     @Override
     public void process() throws IOException {
-        List<File> files = listFiles(rootPath);
-
-        for (File file : files){
-            List<String> lines = readLines(file);
-            if(!lines.isEmpty())
-                writeToFile(lines);
-        }
-
+        Stream<File> steamFiles = listFiles(rootPath);
+        steamFiles.flatMap(this::readLines).forEach(line -> {
+            try {
+                writeToFile(line);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public void listFilesRecursive(File rootDir, List<File> files) {
-        List<File> rootDirFiles = Stream.of(Objects.requireNonNull(rootDir.listFiles()))
-                .collect(Collectors.toList());
-        for (File file : rootDirFiles) {
-            if (file.isDirectory()) {
-                listFilesRecursive(file, files);
-            } else {
-                files.add(file);
-            }
-        }
+        Stream.of(Objects.requireNonNull(rootDir.listFiles()))
+                .forEach(file -> {
+                    if (file.isDirectory()) {
+                        listFilesRecursive(file, files);
+                    } else {
+                        files.add(file);
+                    }
+                });
     }
 
     @Override
-    public List<File> listFiles(String rootPath) {
-        List<File> files = new ArrayList<>();
-        File rootDir = new File(rootPath);
-        listFilesRecursive(rootDir, files);
-        return files;
-    }
-
-    @Override
-    public List<String> readLines(File inputFile) {
-        List<String> lines;
-        try (Scanner grepReader = new Scanner(inputFile)) {
-            lines = new ArrayList<>();
-            while (grepReader.hasNextLine()) {
-                String nextLine = grepReader.nextLine();
-                if(containsPattern(nextLine)) {
-                    lines.add(nextLine);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            logger.error(e.getMessage());
+    public Stream<File> listFiles(String rootPath) {
+        Stream<File> files;
+        try {
+            Stream<Path> stream = Files.walk(Paths.get(rootPath));
+            files = stream.filter(Files::isRegularFile)
+                    .map(Path::toFile).onClose(stream::close);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return lines;
+        return files;
+
+    }
+
+    @Override
+    public Stream<String> readLines(File inputFile) {
+        Stream<String> stream;
+        try {
+            stream = Files.lines(Paths.get(inputFile.getAbsolutePath())).filter(this::containsPattern);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return stream;
     }
 
     @Override
@@ -73,12 +73,10 @@ public class JavaGrepImp implements JavaGrep{
     }
 
     @Override
-    public void writeToFile(List<String> lines) throws IOException {
-        File out = new File(rootPath + outFile);
-            try(FileWriter grepWriter = new FileWriter(out)) {
-                for (String line : lines) {
-                    grepWriter.append(line).append(String.valueOf('\n'));
-                }
+    public void writeToFile(String line) throws IOException {
+        File out = new File(outFile);
+            try(FileWriter grepWriter = new FileWriter(out, true)) {
+                grepWriter.append(line).append(String.valueOf('\n'));
             }
     }
 
