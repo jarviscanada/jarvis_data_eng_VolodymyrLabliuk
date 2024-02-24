@@ -3,9 +3,8 @@ package ca.jrvs.apps.grep;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Stream;
 
-public interface JavaGrep{
+public interface JavaGrep {
     /**
      * Top level search workflow
      * @throws IOException
@@ -17,7 +16,7 @@ public interface JavaGrep{
      * @param rootDir input directory
      * @return files under the rootDir
      */
-    Stream<File> listFiles(String rootDir);
+    List<File> listFiles(String rootDir);
 
     /**
      * Read a file and return all the lines
@@ -28,7 +27,7 @@ public interface JavaGrep{
      * @return lines
      * @throws IllegalArgumentException if a given inputFile is not a file
      */
-    Stream<String> readLines(File inputFile);
+    List<String> readLines(File inputFile);
 
     /**
      * check if a line contains the regex pattern (passed by user)
@@ -42,10 +41,10 @@ public interface JavaGrep{
      *
      * Explore: FileOutputStream, OutputStreamWriter, and BufferedWriter
      *
-     * @param line matched line
+     * @param lines matched line
      * @throws IOException if write failed
      */
-    void writeToFile(String line) throws IOException;
+    void writeToFile(List<String> lines) throws IOException;
     String getRootPath();
     void setRootPath(String rootPath);
     String getRegex();
