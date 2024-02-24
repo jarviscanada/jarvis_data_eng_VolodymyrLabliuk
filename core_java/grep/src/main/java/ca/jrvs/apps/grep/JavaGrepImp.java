@@ -20,21 +20,33 @@ public class JavaGrepImp implements JavaGrep{
     @Override
     public void process() throws IOException {
         List<File> files = listFiles(rootPath);
+
         for (File file : files){
-            if(!file.isDirectory()){
-                writeToFile(readLines(file));
-            }else{
-                listFiles(file.getName());
-            }
+            List<String> lines = readLines(file);
+            if(!lines.isEmpty())
+                writeToFile(lines);
         }
 
     }
 
-    @Override
-    public List<File> listFiles(String rootDir) {
-        return Stream.of(Objects.requireNonNull(new File(rootDir).listFiles()))
-                .filter(file -> !file.isDirectory())
+    public void listFilesRecursive(File rootDir, List<File> files) {
+        List<File> rootDirFiles = Stream.of(Objects.requireNonNull(rootDir.listFiles()))
                 .collect(Collectors.toList());
+        for (File file : rootDirFiles) {
+            if (file.isDirectory()) {
+                listFilesRecursive(file, files);
+            } else {
+                files.add(file);
+            }
+        }
+    }
+
+    @Override
+    public List<File> listFiles(String rootPath) {
+        List<File> files = new ArrayList<>();
+        File rootDir = new File(rootPath);
+        listFilesRecursive(rootDir, files);
+        return files;
     }
 
     @Override
@@ -43,7 +55,10 @@ public class JavaGrepImp implements JavaGrep{
         try (Scanner grepReader = new Scanner(inputFile)) {
             lines = new ArrayList<>();
             while (grepReader.hasNextLine()) {
-                lines.add(grepReader.nextLine());
+                String nextLine = grepReader.nextLine();
+                if(containsPattern(nextLine)) {
+                    lines.add(nextLine);
+                }
             }
         } catch (FileNotFoundException e) {
             logger.error(e.getMessage());
@@ -59,17 +74,12 @@ public class JavaGrepImp implements JavaGrep{
 
     @Override
     public void writeToFile(List<String> lines) throws IOException {
-        File out = new File(rootPath + '/' + outFile);
-        //out.createNewFile(); // if file already exists will do nothing
-        if(out.createNewFile()){
-            try(FileWriter grepWriter = new FileWriter(outFile)) {
+        File out = new File(rootPath + outFile);
+            try(FileWriter grepWriter = new FileWriter(out)) {
                 for (String line : lines) {
-                    grepWriter.write(line);
+                    grepWriter.append(line).append(String.valueOf('\n'));
                 }
             }
-        }else{
-            logger.error("File doesn't exist");
-        }
     }
 
     @Override
@@ -111,7 +121,6 @@ public class JavaGrepImp implements JavaGrep{
 
         JavaGrepImp javaGrepImp = new JavaGrepImp();
         javaGrepImp.setRegex(args[0]);
-        ///home/centos/dev/jarvis_data_eng_vlabliuk/core_java/grep
         javaGrepImp.setRootPath(args[1]);
         javaGrepImp.setOutFile(args[2]);
 
