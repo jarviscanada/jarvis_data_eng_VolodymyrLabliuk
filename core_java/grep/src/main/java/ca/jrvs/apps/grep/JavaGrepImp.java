@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class JavaGrepImp implements JavaGrep{
 
-    final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
+    final protected Logger logger = LoggerFactory.getLogger(JavaGrep.class);
     private String regex;
     private String rootPath;
     private String outFile;

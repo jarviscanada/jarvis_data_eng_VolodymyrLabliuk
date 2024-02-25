@@ -11,19 +11,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class JavaGrepLambdaImp implements JavaGrepLambda {
-
-    final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
-    private String regex;
-    private String rootPath;
-    private String outFile;
+public class JavaGrepLambdaImp extends JavaGrepImp implements JavaGrepLambda {
 
     @Override
-    public void process() {
-        Stream<File> steamFiles = listFiles(rootPath);
-        steamFiles.flatMap(this::readLines).forEach(line -> {
+    public void processWithStream() {
+        Stream<File> steamFiles = listFilesWithStream(getRootPath());
+        steamFiles.flatMap(this::readLinesWithStream).forEach(line -> {
             try {
-                writeToFile(line);
+                writeToFileWithStream(line);
             } catch (IOException e) {
                 logger.error("Error: Unable to process", e);
                 throw new RuntimeException(e);
@@ -32,7 +27,7 @@ public class JavaGrepLambdaImp implements JavaGrepLambda {
     }
 
     @Override
-    public Stream<File> listFiles(String rootPath) {
+    public Stream<File> listFilesWithStream(String rootPath) {
         try {
             Stream<Path> stream = Files.walk(Paths.get(rootPath));
             return stream.filter(Files::isRegularFile)
@@ -44,7 +39,7 @@ public class JavaGrepLambdaImp implements JavaGrepLambda {
     }
 
     @Override
-    public Stream<String> readLines(File inputFile) {
+    public Stream<String> readLinesWithStream(File inputFile) {
         Stream<String> stream;
         try {
             stream = Files.lines(Paths.get(inputFile.getAbsolutePath())).filter(this::containsPattern);
@@ -56,46 +51,11 @@ public class JavaGrepLambdaImp implements JavaGrepLambda {
     }
 
     @Override
-    public boolean containsPattern(String line) {
-        return line.matches(regex);
-    }
-
-    @Override
-    public void writeToFile(String line) throws IOException {
-        File out = new File(outFile);
+    public void writeToFileWithStream(String line) throws IOException {
+        File out = new File(getOutFile());
         try(FileWriter grepWriter = new FileWriter(out, true)) {
             grepWriter.append(line).append(String.valueOf('\n'));
         }
-    }
-
-    @Override
-    public String getRootPath() {
-        return rootPath;
-    }
-
-    @Override
-    public void setRootPath(String rootPath) {
-        this.rootPath = rootPath;
-    }
-
-    @Override
-    public String getRegex() {
-        return regex;
-    }
-
-    @Override
-    public void setRegex(String regex) {
-        this.regex = regex;
-    }
-
-    @Override
-    public String getOutFile() {
-        return outFile;
-    }
-
-    @Override
-    public void setOutFile(String outFile) {
-        this.outFile = outFile;
     }
 
     public static void main(String[] args) {
@@ -105,12 +65,12 @@ public class JavaGrepLambdaImp implements JavaGrepLambda {
 
         BasicConfigurator.configure();
 
-        JavaGrepLambdaImp javaGrepLambdaImp = new JavaGrepLambdaImp();
+        JavaGrepLambda javaGrepLambdaImp = new JavaGrepLambdaImp();
         javaGrepLambdaImp.setRegex(args[0]);
         javaGrepLambdaImp.setRootPath(args[1]);
         javaGrepLambdaImp.setOutFile(args[2]);
 
-        javaGrepLambdaImp.process();
+        javaGrepLambdaImp.processWithStream();
 
     }
 }
