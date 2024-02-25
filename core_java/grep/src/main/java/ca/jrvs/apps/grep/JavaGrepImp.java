@@ -3,7 +3,6 @@ package ca.jrvs.apps.grep;
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,8 +10,7 @@ import java.util.stream.Stream;
 
 public class JavaGrepImp implements JavaGrep{
 
-    final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
-
+    final protected Logger logger = LoggerFactory.getLogger(JavaGrep.class);
     private String regex;
     private String rootPath;
     private String outFile;
@@ -20,13 +18,11 @@ public class JavaGrepImp implements JavaGrep{
     @Override
     public void process() throws IOException {
         List<File> files = listFiles(rootPath);
-
         for (File file : files){
             List<String> lines = readLines(file);
             if(!lines.isEmpty())
                 writeToFile(lines);
         }
-
     }
 
     public void listFilesRecursive(File rootDir, List<File> files) {
@@ -75,11 +71,11 @@ public class JavaGrepImp implements JavaGrep{
     @Override
     public void writeToFile(List<String> lines) throws IOException {
         File out = new File(rootPath + outFile);
-            try(FileWriter grepWriter = new FileWriter(out)) {
-                for (String line : lines) {
-                    grepWriter.append(line).append(String.valueOf('\n'));
-                }
+        try(FileWriter grepWriter = new FileWriter(out)) {
+            for (String line : lines) {
+                grepWriter.append(line).append(String.valueOf('\n'));
             }
+        }
     }
 
     @Override
