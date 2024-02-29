@@ -71,6 +71,5 @@ public class JavaGrepLambdaImp extends JavaGrepImp implements JavaGrepLambda {
         javaGrepLambdaImp.setOutFile(args[2]);
 
         javaGrepLambdaImp.processWithStream();
-
     }
 }
