@@ -40,6 +40,11 @@
       "description": "In this project we set new data base using Docker and PSQL. Main task was to perform different types of queries (DDL and DML) and store that data in VM drive.",
       "git_url": "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/sql",
       "name": "RDBMS and SQL"
+    },
+    {
+      "description": "In this project I developed Java application that scans directory and it's subdirectories recursively and find all matches with Regex provided in all files. Application accepts three arguments Regex, root directory, output file. JAR file generated, dockerized and pushed to Docker Hub for further use.",
+      "git_url": "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/grep",
+      "name": "Java Grep"
     }
   ],
   "name": "Volodymyr Labliuk",
