@@ -10,8 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.sql.*;
 
 public class QuoteServiceUnitTest {
     private QuoteDao quoteDao;
@@ -20,11 +19,17 @@ public class QuoteServiceUnitTest {
     private QuoteHttpHelper httpHelper;
 
     private OkHttpClient client;
+    private Connection c;
+
+    private String url = "jdbc:postgresql://localhost:5432/stock_quote";
+    private String username = "postgres";
+    private String password = "password";
 
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException {
         client = mock(OkHttpClient.class);
-        quoteDao = new QuoteDao();
+        c = DriverManager.getConnection(url, username, password);
+        quoteDao = new QuoteDao(c);
         httpHelper = new QuoteHttpHelper(client);
         quoteService = new QuoteService(quoteDao, httpHelper);
     }
@@ -41,7 +46,6 @@ public class QuoteServiceUnitTest {
     public void testQuoteIsNull() {
         Quote quote = null;
         assertThrows(NullPointerException.class, (Executable) ()->{quoteService.save(quote);});
-//        assertDoesNotThrow(()->{quoteService.save(quote);});
     }
 
     @Test
@@ -56,9 +60,9 @@ public class QuoteServiceUnitTest {
 
     @Test
     public void testDeleteById() {
-        quoteService.deleteById("AAPL");
-        boolean quoteFound = quoteService.findById("AAPL").isPresent();
-        Assert.assertTrue(quoteFound);
+        quoteService.deleteById("MSFT");
+        boolean quoteFound = quoteService.findById("MSFT").isPresent();
+        Assert.assertFalse(quoteFound);
         //assertDoesNotThrow(()->{quoteService.deleteById("AAPL");});
     }
 

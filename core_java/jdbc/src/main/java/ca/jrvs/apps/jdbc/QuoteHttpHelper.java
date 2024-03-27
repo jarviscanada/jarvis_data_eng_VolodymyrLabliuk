@@ -4,6 +4,9 @@ package ca.jrvs.apps.jdbc;
 import okhttp3.OkHttpClient;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,14 +18,18 @@ import okhttp3.Response;
 
 public class QuoteHttpHelper {
 
-    private String apiKey = "4edeebbaf9msh53822f7bf795ee1p1d968djsn9190c9150d97";
+    //private String apiKey = "4edeebbaf9msh53822f7bf795ee1p1d968djsn9190c9150d97";
+    private String apiKey;
     private OkHttpClient client;
+
+    private PositionDao positionDao;
 
     public QuoteHttpHelper() {
         this.client = new OkHttpClient();
     }
 
-    public QuoteHttpHelper(OkHttpClient client) {
+    public QuoteHttpHelper(String apiKey, OkHttpClient client) {
+        this.apiKey = apiKey;
         this.client = client;
     }
 //    /**
@@ -87,15 +94,19 @@ public class QuoteHttpHelper {
         String username = "postgres";
         String password = "password";
 
+        QuoteHttpHelper httpHelper = new QuoteHttpHelper();
+
         // Create a connection to the database
-        //try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            // Create a QuoteDao instance
+        try (Connection c = DriverManager.getConnection(url, username, password)) {
 
 
-        PositionDao positionDao = new PositionDao();
+            httpHelper.positionDao = new PositionDao(c);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         QuoteHttpHelper quoteHttpHelper = new QuoteHttpHelper();
 
-        PositionService positionService = new PositionService();
+        PositionService positionService = new PositionService(httpHelper.positionDao);
         positionService.buy("AAPL", 10, 1600.30);
         System.out.println("done");
 

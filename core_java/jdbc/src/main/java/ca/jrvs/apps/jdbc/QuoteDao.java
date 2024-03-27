@@ -12,12 +12,13 @@ public class QuoteDao implements CrudDao<Quote, String> {
     private String username = "postgres";
     private String password = "password";
 
-    public QuoteDao() {
-        try {
-            c = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public QuoteDao(Connection c) {
+        this.c = c;
+//        try {
+//            c = DriverManager.getConnection(url, username, password);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     @Override

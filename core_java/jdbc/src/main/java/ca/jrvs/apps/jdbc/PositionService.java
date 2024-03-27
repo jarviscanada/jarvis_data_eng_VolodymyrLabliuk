@@ -6,8 +6,8 @@ public class PositionService {
 
     private PositionDao dao;
 
-    public PositionService(){
-        dao = new PositionDao();
+    public PositionService(PositionDao dao){
+        this.dao = dao;
     }
 
     /**
