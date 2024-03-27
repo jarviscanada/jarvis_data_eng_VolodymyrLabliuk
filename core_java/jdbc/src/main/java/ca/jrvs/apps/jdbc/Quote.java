@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -46,6 +46,24 @@ public class Quote {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     @JsonProperty("11. timestamp")
     private Timestamp timestamp; //time when the info was pulled
+
+    public Quote() {
+    }
+
+    public Quote(String ticker, double open, double high, double low, double price, int volume, Date latestTradingDay,
+                 double previousClose, double change, String changePercent, Timestamp timestamp) {
+        this.ticker = ticker;
+        this.open = open;
+        this.high = high;
+        this.low = low;
+        this.price = price;
+        this.volume = volume;
+        this.latestTradingDay = latestTradingDay;
+        this.previousClose = previousClose;
+        this.change = change;
+        this.changePercent = changePercent;
+        this.timestamp = timestamp;
+    }
 
     @JsonProperty("01. symbol")
     public String getTicker() {
