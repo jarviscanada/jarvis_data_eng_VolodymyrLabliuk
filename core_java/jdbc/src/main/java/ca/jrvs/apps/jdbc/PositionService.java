@@ -38,7 +38,10 @@ public class PositionService {
      * @param ticker
      */
     public void sell(String ticker) {
-        dao.deleteById(ticker);
+        if(dao.findById(ticker).isEmpty()){
+            System.out.println("You don't owe shares of this type");
+        }else
+            dao.deleteById(ticker);
     }
 
 }

@@ -1,8 +1,10 @@
 package ca.jrvs.apps.jdbc;
 
  import okhttp3.OkHttpClient;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
+ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,24 +16,24 @@ import java.util.Map;
 
 public class Main {
 
+    public static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         Map<String, String> properties = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/properties.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("jdbc/src/main/resources/properties.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] tokens = line.split(":");
                 properties.put(tokens[0], tokens[1]);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error: File not found", e);
         }
 
         try {
             Class.forName(properties.get("db-class"));
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error("Error: Class cannot be found", e);
         }
         OkHttpClient client = new OkHttpClient();
         String url = "jdbc:postgresql://"+properties.get("server")+":"+properties.get("port")+"/"+properties.get("database");
@@ -44,7 +46,7 @@ public class Main {
             StockQuoteController con = new StockQuoteController(sQuote, sPos);
             con.initClient();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error: SQL exception", e);
         }
     }
 

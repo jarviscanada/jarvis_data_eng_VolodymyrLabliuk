@@ -9,18 +9,9 @@ public class PositionDao implements CrudDao<Position, String> {
 
     private Connection c;
 
-    private String url = "jdbc:postgresql://localhost:5432/stock_quote";
-    private String username = "postgres";
-    private String password = "password";
-
     // Constructor to initialize the Connection
     public PositionDao(Connection c) {
         this.c = c;
-//        try {
-//            c = DriverManager.getConnection(url, username, password);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     @Override

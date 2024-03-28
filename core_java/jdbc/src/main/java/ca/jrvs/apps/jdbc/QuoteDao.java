@@ -8,17 +8,9 @@ import java.util.Optional;
 public class QuoteDao implements CrudDao<Quote, String> {
 
     private Connection c;
-    private String url = "jdbc:postgresql://localhost:5432/stock_quote";
-    private String username = "postgres";
-    private String password = "password";
 
     public QuoteDao(Connection c) {
         this.c = c;
-//        try {
-//            c = DriverManager.getConnection(url, username, password);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     @Override
