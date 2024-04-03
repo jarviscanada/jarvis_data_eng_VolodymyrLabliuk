@@ -9,7 +9,6 @@ public class PositionDao implements CrudDao<Position, String> {
 
     private Connection c;
 
-    // Constructor to initialize the Connection
     public PositionDao(Connection c) {
         this.c = c;
     }

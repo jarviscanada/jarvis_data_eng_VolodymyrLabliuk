@@ -1,36 +1,26 @@
 package ca.jrvs.apps.jdbc;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import okhttp3.OkHttpClient;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.sql.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 public class QuoteServiceUnitTest {
     private QuoteDao quoteDao;
     private QuoteService quoteService;
-
     private QuoteHttpHelper httpHelper;
 
-    private OkHttpClient client;
-    private Connection c;
-
-    private String url = "jdbc:postgresql://localhost:5432/stock_quote";
-    private String username = "postgres";
-    private String password = "password";
-
     @Before
-    public void setUp() throws SQLException {
-        client = mock(OkHttpClient.class);
-        c = DriverManager.getConnection(url, username, password);
-        quoteDao = new QuoteDao(c);
-        httpHelper = new QuoteHttpHelper(client);
+    public void setUp(){
+        quoteDao = mock(QuoteDao.class);
+        httpHelper = mock(QuoteHttpHelper.class);
         quoteService = new QuoteService(quoteDao, httpHelper);
     }
 
@@ -39,47 +29,51 @@ public class QuoteServiceUnitTest {
         Quote quote = new Quote("MSFT", 332.3800, 333.8300, 326.3600,
                 327.7300, 21085695,new Date(2023-10-13),
                 331.1600, -3.4300, "-1.0358%", new Timestamp(System.currentTimeMillis()));
-        assertDoesNotThrow(()->{quoteService.save(quote);});
+        when(quoteDao.save(quote)).thenReturn(quote);
+
+        Quote savedQuote = quoteService.save(quote);
+
+        assertNotNull(savedQuote);
+        assertEquals(quote, savedQuote);
+
+        verify(quoteDao, times(1)).save(quote);
     }
 
     @Test
-    public void testQuoteIsNull() {
-        Quote quote = null;
-        assertThrows(NullPointerException.class, (Executable) ()->{quoteService.save(quote);});
+    public void testFindQuoteById() {
+        Quote testQuote = new Quote("AAPL", 150.0, 160.0, 145.0, 155.0, 10000,
+                new Date(System.currentTimeMillis()), 150.0, 5.0, "3.33%", new Timestamp(System.currentTimeMillis()));
+        String symbol = "MSFT";
+
+        when(quoteDao.findById(symbol)).thenReturn(Optional.of(testQuote));
+        Quote returnedQuote = quoteService.findById(symbol).get();
+        assertEquals(testQuote, returnedQuote);
     }
 
     @Test
-    public void testFindByIdNoSymbol() {
-        assertThrows(IllegalArgumentException.class, (Executable) ()->{quoteService.findById(null);});
+    public void testFindAllQuotes() {
+        List<Quote> testQuotes = Arrays.asList(
+                new Quote("AAPL", 150.0, 160.0, 145.0, 155.0, 10000,
+                        new Date(System.currentTimeMillis()), 150.0, 5.0, "3.33%", new Timestamp(System.currentTimeMillis())),
+                new Quote("GOOGL", 2500.0, 2550.0, 2450.0, 2520.0, 20000,
+                        new Date(System.currentTimeMillis()), 2500.0, 20.0, "0.8%", new Timestamp(System.currentTimeMillis()))
+        );
+        when(quoteDao.findAll()).thenReturn(testQuotes);
+        Iterable<Quote> returnedQuotes = quoteService.findAll();
+        assertEquals(testQuotes, returnedQuotes);
     }
 
     @Test
-    public void testDeleteByIdNoSymbol() {
-        assertThrows(IllegalArgumentException.class, (Executable) ()->{quoteService.deleteById(null);});
+    public void testDeleteQuoteById() {
+        String symbol = "MSFT";
+        quoteService.deleteById(symbol);
+        verify(quoteDao, times(1)).deleteById(symbol);
     }
 
     @Test
-    public void testDeleteById() {
-        quoteService.deleteById("MSFT");
-        boolean quoteFound = quoteService.findById("MSFT").isPresent();
-        Assert.assertFalse(quoteFound);
-        //assertDoesNotThrow(()->{quoteService.deleteById("AAPL");});
+    public void testDeleteAllQuotes() {
+        quoteService.deleteAll();
+        verify(quoteDao, times(1)).deleteAll();
     }
-
-//    @Test
-//    public void testQuoteFindById() {
-//        Quote quote = quoteService.findById("AAPL").isPresent() ?
-//                quoteService.findById("AAPL").get() : null;
-//        if(quote != null)
-//            assertEquals(quote.getTicker(), "AAPL");
-//        else {
-//            Quote quoteToAdd = new Quote("AAPL", 332.3800, 333.8300, 326.3600,
-//                    327.7300, 21085695,new Date(2023-10-13),
-//                    331.1600, -3.4300, "-1.0358%", new Timestamp(System.currentTimeMillis()));
-//            quoteService.save(quoteToAdd);
-//            assertEquals(quote.getTicker(), "AAPL");
-//        }
-//    }
-
 }
 

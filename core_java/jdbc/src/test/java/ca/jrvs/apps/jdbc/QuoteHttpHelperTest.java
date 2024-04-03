@@ -19,27 +19,15 @@ public class QuoteHttpHelperTest {
     Response response;
     Call call;
     ResponseBody responseBody;
+    private String apiKey = "4edeebbaf9msh53822f7bf795ee1p1d968djsn9190c9150d97";
 
     @Before
-    public void setup() throws IOException {
+    public void setup() {
         responseBody = mock(ResponseBody.class);
         client = mock(OkHttpClient.class);
         response = Mockito.mock(Response.class);
         call = Mockito.mock(Call.class);
-        quoteHttpHelper = new QuoteHttpHelper(client);
-//        String json = //Sample Quote from Alpha Vantage
-//                "{ \"Global Quote\": {" +
-//                        "\"01. symbol\": \"MSFT\"," +
-//                        "\"02. open\": \"332.3800\"," +
-//                        "\"03. high\": \"333.8300\"," +
-//                        "\"04. low\": \"326.3600\"," +
-//                        "\"05. price\": \"327.7300\"," +
-//                        "\"06. volume\": \"21085695\"," +
-//                        "\"07. latest trading day\": \"2023-10-13\"," +
-//                        "\"08. previous close\": \"331.1600\"," +
-//                        "\"09. change\": \"-3.4300\"," +
-//                        "\"10. change percent\": \"-1.0358%\"}}";
-
+        quoteHttpHelper = new QuoteHttpHelper(apiKey, client);
     }
 
     @Test
