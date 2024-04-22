@@ -1,4 +1,4 @@
-!# Introduction
+# Introduction
 
 In this project I developed Java application that reads user input perform operations based on it.
 User can buy or sell shares. All data is up-to-date and retrieved from stock API. User can decide to buy or not to buy
