@@ -64,11 +64,20 @@ export function logPerson(person: Person) {
     }`
   );
 }
-
-export function filterPersons(
+export function filterPersons<T extends Person>(
   persons: Person[],
-  personType: string,
-  criteria: Partial<Omit<Person, "type">>
+  personType: User["type"],
+  criteria: Partial<Omit<User, "type">>
+): User[];
+export function filterPersons<T extends Person>(
+  persons: Person[],
+  personType: Admin["type"],
+  criteria: Partial<Omit<Admin, "type">>
+): Admin[];
+export function filterPersons<T extends Person>(
+  persons: Person[],
+  personType: T["type"],
+  criteria: Partial<T>
 ): Person[] {
   return persons
     .filter((person) => person.type === personType)
