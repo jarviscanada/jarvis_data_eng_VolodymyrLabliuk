@@ -87,22 +87,3 @@ class DoublyLinkedList<T> implements LinkedListProps<T> {
     this.size++;
   }
 }
-
-const dll = new DoublyLinkedList();
-dll.push(19);
-dll.push(5);
-dll.push(10);
-
-console.log(dll.pop());
-console.log(dll.pop());
-console.log(dll.pop());
-console.log(dll.pop());
-
-dll.unshift(19);
-dll.unshift(5);
-dll.unshift(10);
-
-console.log(dll.shift());
-console.log(dll.shift());
-console.log(dll.shift());
-console.log(dll.shift());
