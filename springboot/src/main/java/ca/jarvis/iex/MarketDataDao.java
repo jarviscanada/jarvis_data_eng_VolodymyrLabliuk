@@ -20,6 +20,8 @@ public class MarketDataDao{
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final MarketDataConfig marketDataConfig;
+
+    
     @Value("${app.init.dailyList}")
     private String[] initDailyList;
 
