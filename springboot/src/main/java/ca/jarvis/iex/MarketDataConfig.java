@@ -7,7 +7,7 @@ public class MarketDataConfig {
 
     public MarketDataConfig() {
         this.apiUrl = "https://api.iex.cloud/v1/data/core/";
-        this.token = "pk_0077103aed4f422493fa392b4edb5f1c";
+        this.token = "pk_e986b52d0c3a4c2f8a856091cc1e223d";
     }
 
     public String getApiUrl() {

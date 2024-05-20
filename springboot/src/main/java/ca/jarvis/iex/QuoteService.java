@@ -72,14 +72,7 @@ public class QuoteService {
             List<IexQuote> iexQuotes = marketDataDao.findAllById(tickers);
             quotes = new ArrayList<>();
             for(IexQuote iexQuote : iexQuotes){
-                Quote quote = new Quote();
-                quote.setTicker(iexQuote.getSymbol());
-                quote.setAskPrice(iexQuote.getIexAskPrice());
-                quote.setAskSize(iexQuote.getIexAskSize());
-                quote.setBidPrice(iexQuote.getIexBidPrice());
-                quote.setBidSize(iexQuote.getIexBidSize());
-                quote.setLastPrice(iexQuote.getLatestPrice());
-                quotes.add(quote);
+                quotes.add(buildQuoteFromIexQuote(iexQuote));
             }
             quoteDao.saveAll(quotes);
         } catch (IOException e) {
@@ -123,5 +116,35 @@ public class QuoteService {
      */
     public List<Quote> findAllQuotes() {
         return quoteDao.findAll();
+    }
+
+    /**
+     * Helper method to map an IexQuote to a Quote entity
+     * Note: 'iexQuote.getLatestPrice() == null' if the stock market is closed
+     * Make sure to set a default value for number field(s)
+     */
+    protected static Quote buildQuoteFromIexQuote(IexQuote iexQuote) {
+        Quote quote = new Quote();
+        quote.setTicker(iexQuote.getSymbol());
+        quote.setAskPrice(iexQuote.getIexAskPrice());
+        quote.setAskSize(iexQuote.getIexAskSize());
+        quote.setBidPrice(iexQuote.getIexBidPrice());
+        quote.setBidSize(iexQuote.getIexBidSize());
+        quote.setLastPrice(iexQuote.getLatestPrice());
+        return quote;
+    }
+
+    /**
+     * Helper method to validate and save a single ticker
+     * Not to be confused with saveQuote(Quote quote)
+     */
+    protected Quote saveQuote(String ticker) {
+        IexQuote iexQuote = findIexQuoteByTicker(ticker);
+        if(iexQuote != null){
+            Quote quote = buildQuoteFromIexQuote(iexQuote);
+            saveQuote(quote);
+            return quote;
+        }
+        return null;
     }
 }

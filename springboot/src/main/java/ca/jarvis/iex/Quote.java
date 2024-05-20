@@ -1,7 +1,14 @@
 package ca.jarvis.iex;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "quote")
 public class Quote {
 
+    @Id
     private String ticker; //primary key
     private Double lastPrice;
     private Double bidPrice;

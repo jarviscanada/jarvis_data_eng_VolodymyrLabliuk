@@ -3,10 +3,7 @@ package ca.jarvis.iex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -27,14 +24,27 @@ public class QuoteController {
         return quoteService.getQuote(ticker);
     }
 
-//    @GetMapping("/iex/tickers")
-//    public List<IexQuote> getQuotes() throws Exception {
-//        return quoteService.getQuotes(Arrays.asList(initDailyList));
-//    }
-
-    @PostMapping("/iexMarketData ")
-    public ResponseEntity<Void> saveQuote(@RequestBody IexQuote quote) {
+    @PutMapping("/iexMarketData")
+    @ResponseStatus(HttpStatus.OK)
+    public void saveQuote() {
         quoteService.updateMarketData();
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/")
+    @ResponseStatus(HttpStatus.OK)
+    public Quote putQuote(Quote quote) {
+        return quoteService.saveQuote(quote);
+    }
+
+    @GetMapping("/dailyList")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Quote> getDailyList() {
+        return quoteService.findAllQuotes();
+    }
+
+    @PostMapping("/tickerId/{tickerId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Quote createQuote(String tickerId) {
+        return quoteService.saveQuote(tickerId);
     }
 }

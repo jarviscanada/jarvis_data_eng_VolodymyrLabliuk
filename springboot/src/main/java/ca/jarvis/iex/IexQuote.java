@@ -3,8 +3,11 @@ package ca.jarvis.iex;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class IexQuote {
     private int avgTotalVolume;
     private String calculationPrice;
@@ -56,6 +59,7 @@ public class IexQuote {
     private Double previousClose;
     private Integer previousVolume;
     private String primaryExchange;
+    @Id
     private String symbol;
     private Integer volume;
     private Double week52High;
