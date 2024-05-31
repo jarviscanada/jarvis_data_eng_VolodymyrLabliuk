@@ -13,6 +13,7 @@ skills:
   # At least 5 skills
   proficient:
     - Java
+    - Java Spring
     - JavaScript/TypeScript
     - React
     - Linux/Bash
@@ -23,7 +24,7 @@ skills:
   competent:
     - C
     - C++
-    - Java Spring
+    - Docker
     - Cloud platforms
     - System design
   # At least 5 skills
@@ -45,17 +46,27 @@ jarvis_projects:
     git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/sql"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: In this project we set new data base using Docker and PSQL. Main task was to perform different types of queries (DDL and DML) and store that data in VM drive.
+    description: In this project I set new data base using Docker and PSQL. Main task was to perform different types of queries (DDL and DML) and store that data in VM drive.
   - name: "Java Grep"
     git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/grep"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: In this project I developed Java application that scans directory and it's subdirectories recursively and find all matches with Regex provided in all files. Application accepts three arguments Regex, root directory, output file. JAR file generated, dockerized and pushed to Docker Hub for further use.
+    description: I developed Java application that scans directory and it's subdirectories recursively and find all matches with Regex provided in all files. Application accepts three arguments Regex, root directory, output file. JAR file generated, dockerized and pushed to Docker Hub for further use.
   - name: "Java Stock Application"
     git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/jdbc"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: Application to buy and sell stock shares based on actual data from API
+  - name: "Java Trading App"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/springboot"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: This application is built using Java Spring Boot and REST API. It interacts with the IEX Quote API to retrieve financial data, which can then be saved, updated, or used to buy and sell stock shares, with the quantities tracked in a database. The application is thoroughly tested with unit and integration tests, dockerized for containerized deployment, and stored in Docker Hub.
+  - name: "JavaScript and TypeScript coding"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/JavaScript_TypeScript"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: This project aims to practice coding in TypeScript. As part of the process, I developed a doubly linked list, adhering to core Object-Oriented Programming (OOP) principles and the DRY (Don't Repeat Yourself) principle.
 
 
 # List of personal or academic projects
@@ -66,7 +77,7 @@ highlighted_projects:
     #URL is optional
     git_url: "https://github.com/vlabliuk/nhl-stats-app"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: Application allows users to track NHL Live statics, player adn roster information. Application uses it's own server that process data written on NodeJS.
+    description: Application allows users to track NHL Live statics, player and roster information. Application uses it's own server that process data written on NodeJS.
 
 #List of professional experience
 #The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
@@ -79,7 +90,7 @@ professional_experience:
     description: "Develop modern web application using latest technologies such as Docker, Linux, PostgresDB"
   - title: "Software Developer"
     company: "Abra"
-    duration: "Jun 2023 - present"
+    duration: "Jun 2023 - Feb 2024"
     description: "Part of small team working with TypeScript, React, NodeJS, Postgres, Shopify and Google Cloud"
 
 #List of edcuation
