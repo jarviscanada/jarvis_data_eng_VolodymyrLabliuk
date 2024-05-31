@@ -26,7 +26,7 @@ This project is a practice implementation and does not include deployment steps 
 tsc
 
 # Run the compiled JavaScript
-node dist/index.js
+node built/doubly-linked-list/DoublyLinkedList.js
 
 ## Improvement
 Future improvements to this project could include:
