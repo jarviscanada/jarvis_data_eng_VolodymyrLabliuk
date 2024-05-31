@@ -4,9 +4,9 @@ I have been programming for the last 5 years and during this time I managed to g
 
 ## Skills
 
-**Proficient:** Java, JavaScript/TypeScript, React, Linux/Bash, RDBMS/SQL, Agile/Scrum, Git
+**Proficient:** Java, Java Spring, JavaScript/TypeScript, React, Linux/Bash, RDBMS/SQL, Agile/Scrum, Git
 
-**Competent:** C, C++, Java Spring, Cloud platforms, System design
+**Competent:** C, C++, Docker, Cloud platforms, System design
 
 **Familiar:** C#, MySQL, Android development, AWS, GPT API
 
@@ -17,22 +17,26 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_VolodymyrL
 
 **Cluster Monitor** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/linux_sql)]: This project leverages Bash scripting and Docker to create and manage a system monitoring solution. The goal is to collect and store system information and resource usage in a PostgreSQL database. The users of this project are system administrators or anyone interested in monitoring and analyzing hardware specifications and usage over time. Key technologies used include Bash scripting for data collection, Docker for containerization, and PostgreSQL for data storage.
 
-**RDBMS and SQL** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/sql)]: In this project we set new data base using Docker and PSQL. Main task was to perform different types of queries (DDL and DML) and store that data in VM drive.
+**RDBMS and SQL** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/sql)]: In this project I set new data base using Docker and PSQL. Main task was to perform different types of queries (DDL and DML) and store that data in VM drive.
 
-**Java Grep** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/grep)]: In this project I developed Java application that scans directory and it's subdirectories recursively and find all matches with Regex provided in all files. Application accepts three arguments Regex, root directory, output file. JAR file generated, dockerized and pushed to Docker Hub for further use.
+**Java Grep** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/grep)]: I developed Java application that scans directory and it's subdirectories recursively and find all matches with Regex provided in all files. Application accepts three arguments Regex, root directory, output file. JAR file generated, dockerized and pushed to Docker Hub for further use.
 
 **Java Stock Application** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/jdbc)]: Application to buy and sell stock shares based on actual data from API
 
+**Java Trading App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/springboot)]: This application is built using Java Spring Boot and REST API. It interacts with the IEX Quote API to retrieve financial data, which can then be saved, updated, or used to buy and sell stock shares, with the quantities tracked in a database. The application is thoroughly tested with unit and integration tests, dockerized for containerized deployment, and stored in Docker Hub.
+
+**JavaScript and TypeScript coding** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/JavaScript_TypeScript)]: This project aims to practice coding in TypeScript. As part of the process, I developed a doubly linked list, adhering to core Object-Oriented Programming (OOP) principles and the DRY (Don't Repeat Yourself) principle.
+
 
 ## Highlighted Projects
-**NHL stats tracker** [[GitHub](https://github.com/vlabliuk/nhl-stats-app)]: Application allows users to track NHL Live statics, player adn roster information. Application uses it's own server that process data written on NodeJS.
+**NHL stats tracker** [[GitHub](https://github.com/vlabliuk/nhl-stats-app)]: Application allows users to track NHL Live statics, player and roster information. Application uses it's own server that process data written on NodeJS.
 
 
 ## Professional Experiences
 
 **Software Developer, Jarvis (Jan 2024-present)**: Develop modern web application using latest technologies such as Docker, Linux, PostgresDB
 
-**Software Developer, Abra (Jun 2023 - present)**: Part of small team working with TypeScript, React, NodeJS, Postgres, Shopify and Google Cloud
+**Software Developer, Abra (Jun 2023 - Feb 2024)**: Part of small team working with TypeScript, React, NodeJS, Postgres, Shopify and Google Cloud
 
 
 ## Education
