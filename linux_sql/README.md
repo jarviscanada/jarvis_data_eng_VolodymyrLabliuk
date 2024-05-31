@@ -26,7 +26,7 @@ The project implementation revolves around a series of Bash scripts and SQL quer
 
 
 ## Architecture
-Draw a cluster diagram with three Linux hosts, a DB, and agents (use draw.io website). Image must be saved to the `assets` directory.
+Cluster Diagram included as asset file
 
 
 ## Scripts
@@ -37,7 +37,6 @@ Draw a cluster diagram with three Linux hosts, a DB, and agents (use draw.io web
 - ddl.sql contains sql to create two tables host_info and host_usage
 
 ## Database Modeling
-Describe the schema of each table using markdown table syntax (do not put any sql code)
 
 - `host_info`
 ```

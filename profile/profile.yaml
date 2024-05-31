@@ -1,0 +1,124 @@
+# Preferred name (Characters only)
+name: "Volodymyr Labliuk"
+# Your GitHub repo root URL
+github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk
+
+# Introduce yourself, your academic and professional background.
+# What excites you about the software industry and your passion. At least 80 words
+summary: I have been programming for the last 5 years and during this time I managed to get a programmer qualification at Seneca College and experience in developing dynamic applications using modern approaches and programming languages, and still continue to develop my skills in the application of the latest technologies. I am highly motivated, committed and creative. I am passionate about Computer Science and Information Technology, about building software. I am a keen learner. I have been on Presidents Honour List at Seneca college awarded for outstanding achievement in studies for three semesters and have average GPA 3.9 upon graduation.
+
+# Group your skills by level.
+# Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
+skills:
+  # At least 5 skills
+  proficient:
+    - Java
+    - Java Spring
+    - JavaScript/TypeScript
+    - React
+    - Linux/Bash
+    - RDBMS/SQL
+    - Agile/Scrum
+    - Git
+  # At least 5 skills
+  competent:
+    - C
+    - C++
+    - Docker
+    - Cloud platforms
+    - System design
+  # At least 5 skills
+  familiar:
+    - C#
+    - MySQL
+    - Android development
+    - AWS
+    - GPT API
+
+# List of Jarvis projects
+jarvis_projects:
+  - name: "Cluster Monitor"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/linux_sql"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: This project leverages Bash scripting and Docker to create and manage a system monitoring solution. The goal is to collect and store system information and resource usage in a PostgreSQL database. The users of this project are system administrators or anyone interested in monitoring and analyzing hardware specifications and usage over time. Key technologies used include Bash scripting for data collection, Docker for containerization, and PostgreSQL for data storage.
+  - name: "RDBMS and SQL"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/sql"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: In this project I set new data base using Docker and PSQL. Main task was to perform different types of queries (DDL and DML) and store that data in VM drive.
+  - name: "Java Grep"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/grep"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: I developed Java application that scans directory and it's subdirectories recursively and find all matches with Regex provided in all files. Application accepts three arguments Regex, root directory, output file. JAR file generated, dockerized and pushed to Docker Hub for further use.
+  - name: "Java Stock Application"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/jdbc"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: Application to buy and sell stock shares based on actual data from API
+  - name: "Java Trading App"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/core_java/springboot"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: This application is built using Java Spring Boot and REST API. It interacts with the IEX Quote API to retrieve financial data, which can then be saved, updated, or used to buy and sell stock shares, with the quantities tracked in a database. The application is thoroughly tested with unit and integration tests, dockerized for containerized deployment, and stored in Docker Hub.
+  - name: "JavaScript and TypeScript coding"
+    git_url: "https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/JavaScript_TypeScript"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: This project aims to practice coding in TypeScript. As part of the process, I developed a doubly linked list, adhering to core Object-Oriented Programming (OOP) principles and the DRY (Don't Repeat Yourself) principle.
+
+
+# List of personal or academic projects
+# Feel free to add more projects
+highlighted_projects:
+  #project name
+  - name: "NHL stats tracker"
+    #URL is optional
+    git_url: "https://github.com/vlabliuk/nhl-stats-app"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: Application allows users to track NHL Live statics, player and roster information. Application uses it's own server that process data written on NodeJS.
+
+#List of professional experience
+#The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+#The description must be more than 25 words. If your experience is not software related, please focus on soft skills and achievements (e.g. team collaboration, problem-solving, improvements, communication).
+professional_experience:
+  #Write your Jarvis role as a professional experience rather than training.
+  - title: "Software Developer"
+    company: "Jarvis"
+    duration: "Jan 2024-present"
+    description: "Develop modern web application using latest technologies such as Docker, Linux, PostgresDB"
+  - title: "Software Developer"
+    company: "Abra"
+    duration: "Jun 2023 - Feb 2024"
+    description: "Part of small team working with TypeScript, React, NodeJS, Postgres, Shopify and Google Cloud"
+
+#List of edcuation
+education:
+  - school_name: "Seneca College"
+    duration: "2021-2022"
+    degree: "Ontario College Diploma"
+    department: "Computer Programming"
+    awards_achievements:
+      - "Diploma with Honour"
+      - "Scholarship"
+      - "President's List for 3 semesters"
+      - "GPA: 3.9/4.0"
+  - school_name: "Odessa National Maritime University"
+    duration: "2007-2012"
+    degree: "Bachelor of Engineering"
+    department: "Marine Mechanical Engineering"
+    awards_achievements:
+      - "Mentoring"
+
+#Optional section
+others:
+  #category
+  - title: "Certificates"
+    #list of items
+    bullets:
+      - "Java Spring Course (Udemy)"
+  - title: "Activities/Hobbies"
+    bullets:
+      - "Odesa Half Marathon 2016"
+      - "Odesa Half Marathon 2018"
