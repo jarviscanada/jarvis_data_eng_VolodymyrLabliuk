@@ -1,6 +1,4 @@
-import ca.jarvis.iex.MarketDataDao;
-import ca.jarvis.iex.QuoteDao;
-import ca.jarvis.iex.QuoteService;
+import ca.jarvis.iex.*;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +17,18 @@ public class TestConfig {
     @Primary
     public QuoteDao quoteDao() {
         return Mockito.mock(QuoteDao.class);
+    }
+
+    @Bean
+    @Primary
+    public AccountDao accountDao() {
+        return Mockito.mock(AccountDao.class);
+    }
+
+    @Bean
+    @Primary
+    public TraderDao traderDao() {
+        return Mockito.mock(TraderDao.class);
     }
 
     @Bean

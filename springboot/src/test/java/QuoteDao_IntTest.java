@@ -1,4 +1,6 @@
 import ca.jarvis.iex.*;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = {TestConfig.class})
@@ -27,10 +28,25 @@ public class QuoteDao_IntTest {
     @Autowired
     private QuoteDao quoteDao;
 
-    @BeforeEach
+    private Quote savedQuote;
+
+    @Before
     public void setup() {
-        quoteDao.deleteAll();
+       savedQuote = new Quote();
+       savedQuote.setBidSize(10);
+       savedQuote.setBidPrice(10.0);
+       savedQuote.setAskSize(10);
+       savedQuote.setLastPrice(10.0);
+       savedQuote.setTicker("AAPl");
     }
+    @After
+    public void wrapup() {
+        quoteDao.deleteById(savedQuote.getTicker());
+    }
+//    @BeforeEach
+//    public void setup() {
+//        quoteDao.deleteAll();
+//    }
 
     @Test
     public void testSaveAndFind() {
@@ -62,5 +78,11 @@ public class QuoteDao_IntTest {
         assertEquals(2, quotes.size());
         assertTrue(quotes.stream().anyMatch(q -> "AAPL".equals(q.getTicker()) && q.getLastPrice().equals(150.00)));
         assertTrue(quotes.stream().anyMatch(q -> "GOOGL".equals(q.getTicker()) && q.getLastPrice().equals(2800.00)));
+    }
+
+    @Test
+    public void testDeleteByTicker() {
+        assertDoesNotThrow(()->{quoteDao.deleteById("AAPL");});
+        assertNull(quoteDao.findQuoteByTicker("AAPL"));
     }
 }
