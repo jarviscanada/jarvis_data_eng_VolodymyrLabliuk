@@ -44,7 +44,7 @@ public class QuoteController {
     }
 
     @PostMapping("/tickerId/{tickerId}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public Quote createQuote(String tickerId) {
         return quoteService.saveQuote(tickerId);
     }

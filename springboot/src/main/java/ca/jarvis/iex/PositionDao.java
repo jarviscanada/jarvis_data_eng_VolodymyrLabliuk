@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface PositionDao extends JpaRepository<Position, Integer> {
     Optional<List<Position>> findByAccountId(Integer integer);
+    Position findByAccountIdAndTicker(Integer accountId, String ticker);
 }
 
