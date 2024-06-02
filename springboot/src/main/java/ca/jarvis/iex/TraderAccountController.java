@@ -57,6 +57,17 @@ public class TraderAccountController {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping(path = "/traderId/{traderId}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+    public void deleteTrader (@PathVariable Integer traderId) {
+        try{
+            traderAccountService.deleteTraderById(traderId);
+        }catch (Exception e){
+            //throw ResponseExceptionUtil.getResponseStatusException(e);
+            throw e;
+        }
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     @PutMapping(path = "/deposit/traderId/{traderId}/amount/{amount}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public Account depositFund(@PathVariable Integer traderId, @PathVariable Double amount){
