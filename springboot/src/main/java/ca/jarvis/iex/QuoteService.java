@@ -29,11 +29,6 @@ public class QuoteService {
         //quoteDao.save(quote);
         return quote;
     }
-    public List<IexQuote> getQuotes(Iterable<String> tickers) throws Exception {
-        List<IexQuote> quotes = marketDataDao.findAllById(tickers);
-        //quoteDao.saveAll(quotes);
-        return quotes;
-    }
 
     /**
      * Update quote table against IEX source

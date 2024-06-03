@@ -46,10 +46,7 @@ public class Application implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
-        // Perform any additional initialization logic here
+    public void run(String... args) {
         logger.info("Initializing application...");
-        // You can access the quoteService bean here
-        // You can also use initDailyList property
     }
 }

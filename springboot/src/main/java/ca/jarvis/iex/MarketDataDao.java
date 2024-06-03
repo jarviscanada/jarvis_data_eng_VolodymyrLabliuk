@@ -40,9 +40,6 @@ public class MarketDataDao{
      * @throws DataRetrievalFailureException if HTTP request failed
      */
     public Optional<IexQuote> findById(String ticker) throws IOException {
-//        if(!Arrays.asList(initDailyList).contains(ticker.toUpperCase())){
-//            throw new IllegalArgumentException();
-//        }
         String url = marketDataConfig.getApiUrl() + "quote/" + ticker + "?token=" + marketDataConfig.getToken();
         String responseBody = executeHttpGet(url).get();
         IexQuote[] quotes = objectMapper.readValue(responseBody, IexQuote[].class);
@@ -77,23 +74,6 @@ public class MarketDataDao{
         if(responseEntity.getStatusCodeValue() == 404)
             return Optional.empty();
         return Optional.ofNullable(responseBody);
-    }
-
-    /**
-     * Borrow a HTTP client from the HttpClientConnectionManager
-     * @return a HttpClient
-     */
-    private HttpClient getHttpClient() {
-        return null;
-        //TODO
-    }
-
-    public IexQuote getQuote(String ticker) throws Exception {
-        String url = marketDataConfig.getApiUrl() + "quote/" + ticker + "?token=" + marketDataConfig.getToken();
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
-        String responseBody = responseEntity.getBody();
-        IexQuote[] quotes = objectMapper.readValue(responseBody, IexQuote[].class);
-        return quotes[0];
     }
 }
 

@@ -78,8 +78,8 @@ public class TraderAccountService {
             throw new IllegalArgumentException("Cannot delete trader with non-zero account balance");
         }
 
-        List<Position> positions = positionDao.findByAccountId(account.getId()).get();
-        if (!positions.isEmpty()) {
+        Position positions = positionDao.findByAccountId(account.getId()).get();
+        if (positions.getPosition() > 0) {
             throw new IllegalArgumentException("Cannot delete trader with open positions");
         }
 

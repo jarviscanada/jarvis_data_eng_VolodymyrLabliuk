@@ -56,28 +56,6 @@ public class AppConfig {
                 .build();
     }
 
-//    @Bean
-//    public DataSource comboPooledDataSource(){
-//        ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
-//        try {
-//            comboPooledDataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
-//            //comboPooledDataSource.setJdbcUrl("jdbc:mysql://database-1.c6eboyvoj802.us-east-2.rds.amazonaws.com:3306/somedb?useSSL=false");
-//            comboPooledDataSource.setJdbcUrl("jdbc:mysql://usersdb-1.c6eboyvoj802.us-east-2.rds.amazonaws.com:3306/somedb?useSSL=false");
-//            //comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost:3306/somedb?useSSL=false");
-//            comboPooledDataSource.setUser("root");
-//            comboPooledDataSource.setPassword("admin1990");
-//            comboPooledDataSource.setInitialPoolSize(5);
-//            comboPooledDataSource.setMinPoolSize(5);
-//            comboPooledDataSource.setAcquireIncrement(5);
-//            comboPooledDataSource.setMaxPoolSize(20);
-//            comboPooledDataSource.setMaxStatements(100);
-//        }
-//        catch (PropertyVetoException e) {
-//            e.printStackTrace();
-//        }
-//        return comboPooledDataSource;
-//    }
-
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -102,6 +80,5 @@ public class AppConfig {
         return localSessionFactoryBean;
     }
 
-    // You can add more beans or configurations as needed
 }
 

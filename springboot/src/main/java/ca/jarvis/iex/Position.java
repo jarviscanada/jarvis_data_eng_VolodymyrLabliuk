@@ -4,28 +4,18 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "position")
+@IdClass(PositionId.class)
 public class Position {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @Column(name = "account_id", nullable = false)
     private Integer accountId;
-
+    @Id
     @Column(name = "ticker", nullable = false)
     private String ticker;
 
     @Column(name = "position", nullable = false)
     private Integer position;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getAccountId() {
         return accountId;

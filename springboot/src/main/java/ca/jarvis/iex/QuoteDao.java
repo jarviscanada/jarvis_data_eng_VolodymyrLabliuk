@@ -7,13 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface QuoteDao extends JpaRepository<Quote, String> {
-//    Quote save(Quote quote);
-    //List<Quote> saveAll(List<Quote> quotes);
-//    List<Quote> findAll();
+public interface QuoteDao extends JpaRepository<Quote, String> {;
     Optional<Quote> findQuoteByTicker(String ticker);
-//    boolean existsById(String ticker);
-//    void deleteById(String ticker);
-//    long count();
-//    void deleteAll();
 }
