@@ -27,6 +27,8 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_VolodymyrL
 
 **JavaScript and TypeScript coding** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/JavaScript_TypeScript)]: This project aims to practice coding in TypeScript. As part of the process, I developed a doubly linked list, adhering to core Object-Oriented Programming (OOP) principles and the DRY (Don't Repeat Yourself) principle.
 
+**Java Springboot application** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/springboot)]: This project is a Java-based application for managing trading accounts, securities, and market data. It includes features for creating and managing traders, accounts, quotes, security orders, and positions. It allows you to buy and sell shares by making API calls to different endpoints.
+
 
 ## Highlighted Projects
 **NHL stats tracker** [[GitHub](https://github.com/vlabliuk/nhl-stats-app)]: Application allows users to track NHL Live statics, player and roster information. Application uses it's own server that process data written on NodeJS.

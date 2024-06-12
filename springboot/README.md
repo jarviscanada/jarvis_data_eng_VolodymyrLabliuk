@@ -1,6 +1,6 @@
 # Introduction
 
-This project is a Java-based application for managing trading accounts, securities, and market data. It includes features for creating and managing traders, accounts, quotes, security orders, and positions.
+This project is a Java-based application for managing trading accounts, securities, and market data. It includes features for creating and managing traders, accounts, quotes, security orders, and positions. It allows you to buy and sell shares by making API calls to different endpoints
 
 # Quick Start
 
