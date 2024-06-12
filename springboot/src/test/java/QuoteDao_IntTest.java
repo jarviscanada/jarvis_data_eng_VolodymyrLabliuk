@@ -1,25 +1,17 @@
-import ca.jarvis.iex.*;
+import ca.jarvis.iex.quote.Quote;
+import ca.jarvis.iex.quote.QuoteDao;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
-import org.mockito.Mockito;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = {TestConfig.class})
 @Sql({"classpath:schema.sql"})
@@ -43,10 +35,6 @@ public class QuoteDao_IntTest {
     public void wrapup() {
         quoteDao.deleteById(savedQuote.getTicker());
     }
-//    @BeforeEach
-//    public void setup() {
-//        quoteDao.deleteAll();
-//    }
 
     @Test
     public void testSaveAndFind() {

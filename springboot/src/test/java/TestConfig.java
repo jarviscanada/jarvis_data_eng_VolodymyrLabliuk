@@ -1,4 +1,8 @@
-import ca.jarvis.iex.*;
+import ca.jarvis.iex.account.AccountDao;
+import ca.jarvis.iex.quote.QuoteDao;
+import ca.jarvis.iex.quote.QuoteService;
+import ca.jarvis.iex.trader.TraderDao;
+import ca.jarvis.iex.utils.MarketDataDao;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

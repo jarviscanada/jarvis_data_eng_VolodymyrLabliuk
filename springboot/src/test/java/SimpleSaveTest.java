@@ -1,9 +1,11 @@
-import ca.jarvis.iex.*;
+import ca.jarvis.iex.account.Account;
+import ca.jarvis.iex.account.AccountDao;
+import ca.jarvis.iex.trader.Trader;
+import ca.jarvis.iex.trader.TraderDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Date;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 
@@ -19,7 +21,6 @@ public class SimpleSaveTest {
     @Test
     //@Transactional
     public void testSaveTraderAndAccount() {
-        // Create and save a trader
         Trader trader = new Trader();
         trader.setFirstName("John");
         trader.setLastName("Doe");
@@ -30,7 +31,6 @@ public class SimpleSaveTest {
         Trader savedTrader = traderDao.save(trader);
         assertNotNull(savedTrader.getId(), "Trader ID should not be null");
 
-        // Create and save an account
         Account account = new Account();
         account.setTrader(savedTrader);
         account.setAmount(0.0);

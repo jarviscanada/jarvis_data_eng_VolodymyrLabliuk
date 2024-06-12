@@ -1,19 +1,16 @@
-import ca.jarvis.iex.*;
-import org.junit.jupiter.api.BeforeEach;
+import ca.jarvis.iex.iexQuote.IexQuote;
+import ca.jarvis.iex.quote.Quote;
+import ca.jarvis.iex.quote.QuoteDao;
+import ca.jarvis.iex.quote.QuoteService;
+import ca.jarvis.iex.utils.MarketDataDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
-import org.mockito.Mockito;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,11 +29,6 @@ class QuoteService_IntTest {
 
     @Autowired
     private QuoteDao quoteDao;
-
-//    @BeforeEach
-//    public void setup() {
-//        quoteDao.deleteAll();
-//    }
 
     @Test
     public void updateMarketData() throws IOException {

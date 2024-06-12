@@ -1,4 +1,8 @@
-import ca.jarvis.iex.*;
+import ca.jarvis.iex.iexQuote.IexQuote;
+import ca.jarvis.iex.quote.Quote;
+import ca.jarvis.iex.quote.QuoteDao;
+import ca.jarvis.iex.quote.QuoteService;
+import ca.jarvis.iex.utils.MarketDataDao;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
