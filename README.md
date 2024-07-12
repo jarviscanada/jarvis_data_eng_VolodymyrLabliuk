@@ -29,6 +29,8 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_VolodymyrL
 
 **Java Springboot application** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/springboot)]: This project is a Java-based application for managing trading accounts, securities, and market data. It includes features for creating and managing traders, accounts, quotes, security orders, and positions. It allows you to buy and sell shares by making API calls to different endpoints.
 
+**Python Data Analytics** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/masterhttps://github.com/jarviscanada/jarvis_data_eng_VolodymyrLabliuk/tree/master/python_data_analytics)]: The idea of this project is to built pipeline from CSV file Jupyter notebook in order to perform different analytical oprations. I used Pandas, Numpy and Matplotlib to manipulate records in DataFrame persorm different calculations and visualize data as Graphs and Curves.
+
 
 ## Highlighted Projects
 **NHL stats tracker** [[GitHub](https://github.com/vlabliuk/nhl-stats-app)]: Application allows users to track NHL Live statics, player and roster information. Application uses it's own server that process data written on NodeJS.
