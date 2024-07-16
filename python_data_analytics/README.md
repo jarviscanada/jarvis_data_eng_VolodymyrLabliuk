@@ -16,6 +16,7 @@ Run retail_data_analytics_wrangling.ipynb. Jupyter Notebook required.
 
 ## Database Modeling
 
+```
     Column    |            Type             | Collation | Nullable | Default | Storage  | Stats target | Description
 --------------+-----------------------------+-----------+----------+---------+----------+--------------+-------------
  invoice_no   | text                        |           |          |         | extended |              |
@@ -27,6 +28,7 @@ Run retail_data_analytics_wrangling.ipynb. Jupyter Notebook required.
  customer_id  | real                        |           |          |         | plain    |              |
  country      | text                        |           |          |         | extended |              |
 
+```
 
 # Test
 
