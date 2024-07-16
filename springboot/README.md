@@ -19,6 +19,7 @@ API Documentation can be accessed at https://iexcloud.io/docs
 
 ## Architecture
 
+```
 src
 L-- main
 +-- java
@@ -62,7 +63,7 @@ L-- java
 +-- QuoteService_UnitTest.java
 +-- SimpleSaveTest.java
 L-- TestConfig.java
-
+```
 
 
 ## Scripts
